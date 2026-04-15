@@ -1,37 +1,79 @@
-<!-- 这是HTML注释，不会显示在网页上 -->
+<!-- 这行是告诉浏览器：我这是个网页，你按网页的规则来读我 -->
 <!DOCTYPE html>
-<!-- 声明这是一个网页 -->
+<!-- 网页的最外层标签，所有内容都要放这里 -->
 <html lang="zh-CN">
-<!-- 网页的根标签，所有内容都放这里 -->
+<!-- 网页的头部：存一些看不见的基础设置 -->
 <head>
-    <!-- 头部：设置网页基础信息 -->
+    <!-- 告诉浏览器用中文编码，避免乱码 -->
     <meta charset="UTF-8">
-    <title>我的第一个项目</title>
-    <!-- 网页标题（浏览器标签显示的文字） -->
+    <!-- 浏览器标签上显示的名字（就是你打开网页，顶部标签的文字） -->
+    <title>我的第一个小站</title>
+    <!-- 这里是美化网页的代码，让它不是光秃秃的文字 -->
     <style>
-        /* CSS样式：让网页变好看，这是美化代码 */
+        /* 整个页面的背景设置 */
         body {
-            background-color: #f0f8ff; /* 背景色 */
-            text-align: center; /* 文字居中 */
-            margin-top: 100px;
+            background-color: #f0f8ff; /* 淡蓝色背景，你可以改成别的颜色 */
+            text-align: center; /* 所有文字居中 */
+            margin-top: 100px; /* 让内容离顶部远一点，不要顶在最上面 */
         }
+        /* 中间白色卡片的样式 */
         .card {
-            width: 300px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #ccc;
+            width: 500px; /* 卡片的宽度 */
+            margin: 0 auto; /* 让卡片在页面中间 */
+            padding: 20px; /* 卡片里面的文字离边框的距离 */
+            background: white; /* 卡片的背景是白色 */
+            border-radius: 10px; /* 卡片的圆角，让它不是方的 */
+            box-shadow: 0 0 10px #ccc; /* 卡片的阴影，让它看起来浮起来 */
         }
+	.pho{
+	   width: 100px; /* 头像宽度 */
+   	   height: 100px; /* 头像高度，和宽度一样就是正圆 */
+       	   border-radius: 50%; /* 把图片变成圆形 */
+       	   object-fit: cover; /* 防止图片被拉伸变形 */
+       	   margin-bottom: 20px; /* 头像和下面文字的距离 */
+       	   border: 3px solid #f0f8ff; /* 给头像加个淡蓝色的边框 */
+       	   box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 给头像加个小阴影 */
+        }
+        .tags { /*标签*/
+             margin: 20px 0;
+             display: flex;
+             flex-wrap: wrap;
+             justify-content: center;
+             gap: 10px; /* 标签之间的间距 */
+        }
+        .tag {
+             padding: 5px 15px;
+             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* 渐变色背景 */
+   	     color: white;
+   	     border-radius: 20px;
+	     font-size: 14px;
+}
+
     </style>
 </head>
-
 <body>
-    <!-- 身体：网页真正显示的内容 -->
+    <!-- 这就是中间的白色卡片 -->
     <div class="card">
-        <h1>你好！我是嘻嘻嘻</h1>
-        <p>我的爱好：敲代码、听歌、旅行</p>
-        <p>这是我的第一个编程项目 ✨</p>
+	<img src="test.jpg" class="pho" alt= "头像">
+        <h1>爱苗松松<br>么么哒</h1> 
+        <p>苗松松的爱好（享受自由、惬意的小宝宝）：</p> 
+	<p>Eason、拜仁、骑行 、听歌、跑步</p> 
+	<p>不能吃太辣，不吃太甜<br>美式可以喝一大口，好的好的（只是简短总结）</p> 
+        <p>这是我的第一个编程项目 ✨</p> <!-- 第四行小字-->
     </div>
+
+    <h1>
+     		😝
+    </h1>
+    <div class="tags">
+	<span class="tag">football</span>
+        <span class="tag">badminton</span>
+        <span class="tag">run</span>
+        <span class="tag">journey</span>
+        <span class="tag">game</span>
+        <span class="tag">and so on..</span>
+    </div>
+
+
 </body>
 </html>
