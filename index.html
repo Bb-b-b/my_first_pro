@@ -19,36 +19,50 @@
             box-sizing: border-box;
             font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
         }
-        /* 整个页面的背景设置 */
+        /* 整个页面的背景设置：四色柔雾流动渐变，色彩丰富不刺眼 */
         body {
-            background: linear-gradient(120deg, #FFF5F8, #F8F0FF); /* 柔粉到浅紫的渐变背景，更有氛围感 */
-            text-align: center; /* 所有文字居中 */
-            padding: 50px 20px; /* 适配手机，左右留边距 */
-            min-height: 100vh; /* 让页面占满整个屏幕高度 */
+            background: linear-gradient(120deg, #FFF5F8, #F8F0FF, #F0F7FF, #FFF8F0);
+            background-size: 400% 400%;
+            animation: bgGradient 15s ease infinite; /* 背景缓慢流动动画，氛围感拉满 */
+            text-align: center;
+            padding: 50px 20px;
+            min-height: 100vh;
         }
-        /* 中间主卡片的样式 */
+        /* 背景流动动画 */
+        @keyframes bgGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* 中间主卡片的样式：粉白柔雾渐变 */
         .card {
-            width: 500px; /* 卡片的宽度 */
-            max-width: 100%; /* 适配手机，不会超出屏幕 */
-            margin: 0 auto; /* 让卡片在页面中间 */
-            padding: 30px 20px; /* 卡片里面的文字离边框的距离 */
-            background: #FFF0F5; /* 卡片的浅粉色背景 */
-            border-radius: 15px; /* 卡片的圆角，更软萌 */
-            box-shadow: 0 5px 15px rgba(150, 100, 200, 0.1); /* 卡片的阴影，让它看起来浮起来 */
+            width: 500px;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFE4E9 100%);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(255, 182, 193, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
         }
-        /* 头像样式 */
+        /* 头像样式：粉紫渐变发光边框 */
         .pho{
-            width: 100px; /* 头像宽度 */
-            height: 100px; /* 头像高度，和宽度一样就是正圆 */
-            border-radius: 50%; /* 把图片变成圆形 */
-            object-fit: cover; /* 防止图片被拉伸变形 */
-            margin-bottom: 20px; /* 头像和下面文字的距离 */
-            border: 3px solid #FFE4E9; /* 浅粉色边框，和整体风格统一，不突兀 */
-            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 给头像加个小阴影 */
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #FF85B3, #D885FF) border-box;
+            box-shadow: 0 0 15px rgba(216, 133, 255, 0.3);
         }
         /* 主标题样式 */
         .card h1 {
-            color: #D87093;
+            background: linear-gradient(135deg, #D87093, #9C27B0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             line-height: 1.5;
             margin-bottom: 20px;
             font-size: 28px;
@@ -61,20 +75,24 @@
             font-size: 16px;
         }
 
-        /* 心动语录卡片样式 */
+        /* 心动语录卡片样式：紫蓝柔雾渐变 */
         .words-card {
             width: 500px;
             max-width: 100%;
             margin: 30px auto;
             padding: 25px;
-            background: linear-gradient(135deg, #FFF0F5 0%, #F8F0FF 100%);
+            background: linear-gradient(135deg, #F0EFFF 0%, #E6E6FA 100%);
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(150, 100, 200, 0.1);
+            box-shadow: 0 5px 20px rgba(182, 182, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
         }
         .words-card p {
             margin: 0;
             line-height: 1.8;
-            color: #764ba2;
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             font-style: italic;
             font-size: 16px;
         }
@@ -84,30 +102,77 @@
             font-weight: 500;
         }
 
-        /* 音乐播放器样式，和整体粉紫风格统一 */
+        /* 音乐播放器样式：橙黄元气渐变，适配《我们万岁》 */
         .music-box {
             width: 500px;
             max-width: 100%;
             margin: 30px auto;
             padding: 15px 20px;
-            background: #FFF0F5;
+            background: linear-gradient(135deg, #FFF8E6 0%, #FFF0E6 100%);
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(150, 100, 200, 0.1);
+            box-shadow: 0 5px 20px rgba(255, 200, 150, 0.2);
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 15px;
             flex-wrap: wrap;
             justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.5);
         }
         .music-box p {
             margin: 0;
-            color: #D87093;
+            background: linear-gradient(135deg, #FF8C00, #F57C00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             font-weight: 500;
         }
         .music-box audio {
             height: 32px;
             border-radius: 20px;
+        }
+
+        /* 新增：《我们万岁》专属歌词卡片样式 */
+        .lyric-card {
+            width: 500px;
+            max-width: 100%;
+            margin: 30px auto;
+            padding: 25px;
+            background: linear-gradient(135deg, #FFE6F2 0%, #F8E6FF 100%);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(255, 182, 193, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        .lyric-card h3 {
+            background: linear-gradient(135deg, #D87093, #9C27B0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        .lyric-card .lyric-content {
+            line-height: 2;
+            color: #666;
+            font-size: 14px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        /* 歌词滚动条美化 */
+        .lyric-content::-webkit-scrollbar {
+            width: 4px;
+        }
+        .lyric-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #FF85B3, #D885FF);
+            border-radius: 4px;
+        }
+        .lyric-content .highlight {
+            background: linear-gradient(135deg, #D87093, #9C27B0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
         }
 
         /* 表情样式 */
@@ -127,30 +192,31 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px; /* 标签之间的间距 */
+            gap: 10px;
         }
-        /* 单个标签基础样式 */
+        /* 单个标签基础样式：发光hover效果 */
         .tag {
-            padding: 6px 18px; /* 饱满的内边距 */
+            padding: 6px 18px;
             color: white;
-            border-radius: 25px; /* 大圆角更可爱 */
+            border-radius: 25px;
             font-size: 14px;
-            font-weight: 500; /* 文字加粗更清晰 */
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15); /* 立体阴影 */
-            transition: all 0.3s ease; /* hover动画过渡 */
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
         }
         .tag:hover {
-            transform: translateY(-3px); /* 鼠标放上去上浮 */
+            transform: translateY(-3px) scale(1.05);
+            filter: brightness(1.1);
         }
-        /* 多巴胺配色：每个标签不同的明亮渐变 */
+        /* 多巴胺配色：每个标签专属渐变，色彩更饱满丰富 */
         .tag-1 { background: linear-gradient(135deg, #FF9800 0%, #FFEB3B 100%); } /* 亮橙→亮黄 */
         .tag-2 { background: linear-gradient(135deg, #FF4081 0%, #9C27B0 100%); } /* 亮粉→亮紫 */
         .tag-3 { background: linear-gradient(135deg, #2196F3 0%, #00BCD4 100%); } /* 亮蓝→亮青 */
         .tag-4 { background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%); } /* 亮绿→浅绿 */
         .tag-5 { background: linear-gradient(135deg, #673AB7 0%, #E91E63 100%); } /* 深紫→亮粉 */
-        .tag-6 { background: linear-gradient(135deg, #00BCD4 0%, #03A9F4 100%); } /* 亮青→天蓝 */
+        .tag-6 { background: linear-gradient(135deg, #FF5722 0%, #FF9800 100%); } /* 亮红→亮橙 */
 
-        /* 爱好小卡片容器，横向排列，自适应 */
+        /* 爱好小卡片容器 */
         .hobby-wrap {
             width: 540px;
             max-width: 100%;
@@ -160,23 +226,31 @@
             justify-content: center;
             gap: 15px;
         }
+        /* 爱好卡片：每个卡片专属马卡龙渐变，色彩完全不重复 */
         .hobby-card {
             width: 150px;
             padding: 15px 10px;
-            background: #FFF0F5;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(150, 100, 200, 0.1);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.5);
         }
         .hobby-card:hover {
-            transform: translateY(-5px); /* 鼠标放上去上浮 */
-            box-shadow: 0 5px 15px rgba(255, 133, 179, 0.3);
+            transform: translateY(-5px) scale(1.03);
+            filter: brightness(1.05);
         }
-        .hobby-card h3 {
-            margin: 0 0 8px 0;
-            font-size: 16px;
-            color: #9C27B0;
-        }
+        /* 每个爱好卡片专属渐变配色，和标签呼应 */
+        .hobby-card:nth-child(1) { background: linear-gradient(135deg, #FFF0E6 0%, #FFE8CC 100%); } /* 橙黄调 */
+        .hobby-card:nth-child(2) { background: linear-gradient(135deg, #FFE6F2 0%, #F8E6FF 100%); } /* 粉紫调 */
+        .hobby-card:nth-child(3) { background: linear-gradient(135deg, #E6F7FF 0%, #E6F0FF 100%); } /* 蓝紫调 */
+        .hobby-card:nth-child(4) { background: linear-gradient(135deg, #E6FFF0 0%, #F0FFE6 100%); } /* 绿调 */
+        .hobby-card:nth-child(5) { background: linear-gradient(135deg, #F0E6FF 0%, #FFE6F8 100%); } /* 紫粉调 */
+        /* 爱好卡片标题对应配色 */
+        .hobby-card:nth-child(1) h3 { color: #F57C00; }
+        .hobby-card:nth-child(2) h3 { color: #C2185B; }
+        .hobby-card:nth-child(3) h3 { color: #1976D2; }
+        .hobby-card:nth-child(4) h3 { color: #388E3C; }
+        .hobby-card:nth-child(5) h3 { color: #7B1FA2; }
         .hobby-card p {
             margin: 0;
             font-size: 13px;
@@ -184,7 +258,7 @@
             line-height: 1.5;
         }
 
-        /* 照片墙样式 */
+        /* 照片墙样式：hover彩色阴影 */
         .photo-wall {
             width: 540px;
             max-width: 100%;
@@ -200,52 +274,61 @@
             object-fit: cover;
             box-shadow: 0 0 8px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.8);
         }
         .photo-wall img:hover {
-            transform: scale(1.05); /* 鼠标放上去放大 */
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
         }
 
-        /* 第二个按钮容器：去掉突兀蓝色，和整体风格统一 */
+        /* 第二个按钮容器：青绿清新渐变 */
         .abc{
             width: 250px;
             max-width: 100%;
-            margin: 50px auto; /* 加auto让容器居中，和上面的卡片对齐 */
+            margin: 50px auto;
             padding: 20px 10px;
-            background: #F3EEF9; /* 浅粉紫背景，和整体完美呼应 */
+            background: linear-gradient(135deg, #F0FFF8 0%, #E6FFFA 100%);
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(150, 100, 200, 0.15); /* 淡紫柔焦阴影 */
+            box-shadow: 0 5px 20px rgba(150, 230, 200, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
         }
         .abc p {
             margin-top: 15px;
-            color: #764ba2;
+            background: linear-gradient(135deg, #00897B, #00796B);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             font-weight: 500;
             font-size: 16px;
         }
 
-        /* 按钮样式：粉紫渐变，和多巴胺风格统一 */
+        /* 按钮样式：彩虹渐变，hover色彩流动效果 */
         .btn{
             padding: 10px 30px;
-            background: linear-gradient(135deg, #FF85B3 0%, #D885FF 100%); /* 温柔粉紫渐变 */
+            background: linear-gradient(135deg, #FF85B3 0%, #D885FF 50%, #85B3FF 100%);
             color: white;
             border: none;
             border-radius: 25px;
             font-size: 16px;
             font-weight: 500;
-            cursor: pointer; /* 鼠标放上去变成小手 */
-            transition: all 0.3s ease; /* 过渡动画 */
-            box-shadow: 0 3px 10px rgba(255, 133, 179, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 15px rgba(255, 133, 179, 0.3);
+            background-size: 200% 100%;
         }
         .btn:hover{
-            background: linear-gradient(135deg, #FF6699 0%, #CC66FF 100%); /* 悬停加深渐变 */
-            transform: scale(1.05); /* 按钮稍微放大 */
-            box-shadow: 0 5px 15px rgba(204, 102, 255, 0.4);
+            background-position: 100% 0;
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(133, 179, 255, 0.4);
         }
 
         /* 页脚落款 */
         .footer {
             margin-top: 30px;
-            color: #999;
+            background: linear-gradient(135deg, #999, #666);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             font-size: 14px;
         }
     </style>
@@ -267,10 +350,57 @@
         <p class="sign">—— 写给永远惬意的小宝宝</p>
     </div>
 
-    <!-- 陈奕迅专属音乐播放器 -->
+    <!-- 已替换：陈奕迅《我们万岁》专属音乐播放器 -->
     <div class="music-box">
         <p>🎵 循环播放：陈奕迅 - 我们万岁</p>
-        <audio controls src="这里替换成歌曲MP3链接">
+        <audio controls src="D:\CloudMusic\MV\陈奕迅,eason and the duo band - 我们万岁.mp4">
+    </div>
+
+    <!-- 新增：《我们万岁》完整歌词卡片 -->
+    <div class="lyric-card">
+        <h3>💌 《我们万岁》歌词</h3>
+        <div class="lyric-content">
+            <p>渐渐头上染了白 你一样很美</p>
+            <p>纯粹发自我真心 别皱眉</p>
+            <p>月亮是否仍然认得当天的你</p>
+            <p>约会每一刻亦带着孩子气</p>
+            <p>常为碎事而庆祝</p>
+            <p>怀念幼稚时犯的错</p>
+            <p>真想与你重游那快乐故地</p>
+            <br>
+            <p class="highlight">情人游天地 日月换行李</p>
+            <p class="highlight">如果失忆 我渴望再多一次 认识你</p>
+            <p class="highlight">与你说些无聊事 挽手几千里</p>
+            <p class="highlight">证明可不舍不弃 吻停不知几多岁的你</p>
+            <br>
+            <p>特别鸣谢你制造 更欢乐的我</p>
+            <p>除了每月有几天 受折磨</p>
+            <p>段段日子回头望清怎么走过</p>
+            <p>确定这碉堡没有事能攻破</p>
+            <p>曾为愤怒而痛哭</p>
+            <p>回望厌闷时越的界</p>
+            <p>珍惜有你仍然会对着我坐</p>
+            <br>
+            <p class="highlight">情人游天地 日月换行李</p>
+            <p class="highlight">如果失忆 我渴望再多一次 认识你</p>
+            <p class="highlight">与你说些无聊事 挽手几千里</p>
+            <p class="highlight">证明可不舍不弃 吻停你到下世纪</p>
+            <br>
+            <p>变幻 继续 变幻 拆不开</p>
+            <p>我们 已成 我们 还好有爱在 怀中感慨</p>
+            <p>笑着 喊着 抱着 如万世不朽只有爱</p>
+            <p>多好 能拥抱未来</p>
+            <br>
+            <p class="highlight">情人游天地 日月换行李</p>
+            <p class="highlight">从今开始 懒理会世间一切 是与非</p>
+            <p class="highlight">与你说些无聊事 再走几千里</p>
+            <p class="highlight">永恒的不舍不弃 降临你我合葬的墓碑</p>
+            <br>
+            <p>（能重头偷望你 能重头追逐你 能重头亲近你）</p>
+            <p>而我要好好珍惜你</p>
+            <p>（能重头呵护你 能重头感动你）</p>
+            <p>能重头享受爱你</p>
+        </div>
     </div>
 
     <!-- 表情装饰 -->
