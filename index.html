@@ -114,6 +114,11 @@
         .emoji {
             font-size: 40px;
             margin: 20px 0;
+            animation: emojiBounce 2s ease infinite;
+        }
+        @keyframes emojiBounce {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         /* 标签容器样式 */
@@ -269,7 +274,7 @@
     </div>
 
     <!-- 表情装饰 -->
-    <div class="emoji">😝</div>
+    <div class="emoji">🤓</div>
 
     <!-- 多巴胺标签模块 -->
     <div class="tags">
