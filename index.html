@@ -331,12 +331,67 @@
             color: transparent;
             font-size: 14px;
         }
+
+        /* 足球图片弹窗样式 */
+        .img-popup{
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content{
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+        .close-btn{
+            font-size: 30px;
+            float: right;
+            cursor: pointer;
+            color: #ff5722;
+        }
+        .img-grid{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .img-grid img{
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .popup-content h3{
+            color: #ff5722;
+            margin: 0 0 10px 0;
+        }
     </style>
 </head>
+<!-- 足球图片集弹窗 (默认隐藏) -->
+<div id="footballBox" class="img-popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closeFootball()">×</span>
+        <h3>        ⚽ OKOK 足球宝贝</h3><!--  4.20新增-->>
+        <div class="img-grid">
+            <img src="./s1-ball.jpg" alt="松踢球照1">
+            <img src="./s2-ball.jpg" alt="松踢球照2">
+        </div>
+    </div>
+</div>
 <body>
     <!-- 主卡片：核心介绍 -->
     <div class="card">
-        <img src="./test.jpg" class="pho" alt="头像">
+        <img src="./headpro.jpg" class="pho" alt="头像">
         <h1>爱苗松松<br>么么哒</h1> 
         <p>苗松松的爱好（享受自由、惬意的小宝宝）：</p> 
         <p>Eason、拜仁、骑行 、听歌、跑步</p> 
@@ -358,7 +413,7 @@
 
     <!-- 新增：《我们万岁》完整歌词卡片 -->
     <div class="lyric-card">
-        <h3>💌 《我们万岁》歌词</h3>
+        <h3>  💌《我们万岁》歌词</h3>
         <div class="lyric-content">
             <p>渐渐头上染了白 你一样很美</p>
             <p>纯粹发自我真心 别皱眉</p>
@@ -408,7 +463,7 @@
 
     <!-- 多巴胺标签模块 -->
     <div class="tags">
-        <span class="tag tag-1">football</span>
+        <span class="tag tag-1" onclick="showFootball()">football</span><!--  点击触发弹窗 -->
         <span class="tag tag-2">badminton</span>
         <span class="tag tag-3">run</span>
         <span class="tag tag-4">journey</span>
@@ -452,14 +507,26 @@
 
     <!-- 按钮互动容器 -->
     <div class="abc">
-        <button class="btn" id="contactBtn">call me</button>
-        <p>恭喜你</p>
+        <button class="btn" id="contactBtn">kiss 👄</button>
+        <p>喜欢你</p>
     </div>
 
     <!-- 页脚落款 -->
     <div class="footer">
         Made with 💗 | 我的第一个编程项目
     </div>
+
+    <!-- 按钮点击 -->
+    <script>
+        // 显示足球图片集
+        function showFootball(){
+            document.getElementById("footballBox").style.display = "flex";
+        }
+        // 关闭足球图片集
+        function closeFootball(){
+            document.getElementById("footballBox").style.display = "none";
+        }
+    </script>
 
     <!-- 按钮点击互动彩蛋 -->
     <script>

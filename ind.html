@@ -1,0 +1,385 @@
+<!-- 这行是告诉浏览器：我这是个网页，你按网页的规则来读我 -->
+<!DOCTYPE html>
+<!-- 网页的最外层标签，所有内容都要放这里 -->
+<html lang="zh-CN">
+<!-- 网页的头部：存一些看不见的基础设置 -->
+<head>
+    <!-- 告诉浏览器用中文编码，避免乱码 -->
+    <meta charset="UTF-8">
+    <!-- 适配手机屏幕，不会在手机上缩成一团 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 浏览器标签上显示的名字（就是你打开网页，顶部标签的文字） -->
+    <title>苗松松的专属心动小站</title>
+    <!-- 这里是美化网页的代码，让它不是光秃秃的文字 -->
+    <style>
+        /* 全局基础设置：统一字体，让页面在所有设备上显示一致 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+        }
+        /* 整个页面的背景设置：升级为四色柔雾渐变，色彩更丰富不刺眼 */
+        body {
+            background: linear-gradient(120deg, #FFF5F8, #F8F0FF, #F0F7FF, #FFF8F0);
+            background-size: 400% 400%;
+            animation: bgGradient 15s ease infinite; /* 背景缓慢流动动画，氛围感拉满 */
+            text-align: center;
+            padding: 50px 20px;
+            min-height: 100vh;
+        }
+        /* 背景流动动画 */
+        @keyframes bgGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* 中间主卡片的样式：升级粉白柔雾渐变 */
+        .card {
+            width: 500px;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFE4E9 100%);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(255, 182, 193, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        /* 头像样式：升级渐变发光边框 */
+        .pho{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #FF85B3, #D885FF) border-box;
+            box-shadow: 0 0 15px rgba(216, 133, 255, 0.3);
+        }
+        /* 主标题样式 */
+        .card h1 {
+            background: linear-gradient(135deg, #D87093, #9C27B0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        /* 卡片内的段落文字 */
+        .card p {
+            line-height: 1.8;
+            color: #666;
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        /* 心动语录卡片样式：升级紫蓝柔雾渐变 */
+        .words-card {
+            width: 500px;
+            max-width: 100%;
+            margin: 30px auto;
+            padding: 25px;
+            background: linear-gradient(135deg, #F0EFFF 0%, #E6E6FA 100%);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(182, 182, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        .words-card p {
+            margin: 0;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-style: italic;
+            font-size: 16px;
+        }
+        .words-card .sign {
+            margin-top: 15px;
+            text-align: right;
+            font-weight: 500;
+        }
+
+        /* 音乐播放器样式：升级橙黄元气渐变 */
+        .music-box {
+            width: 500px;
+            max-width: 100%;
+            margin: 30px auto;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #FFF8E6 0%, #FFF0E6 100%);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(255, 200, 150, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        .music-box p {
+            margin: 0;
+            background: linear-gradient(135deg, #FF8C00, #F57C00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 500;
+        }
+        .music-box audio {
+            height: 32px;
+            border-radius: 20px;
+        }
+
+        /* 表情样式 */
+        .emoji {
+            font-size: 40px;
+            margin: 20px 0;
+            animation: emojiBounce 2s ease infinite;
+        }
+        @keyframes emojiBounce {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* 标签容器样式 */
+        .tags {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        /* 单个标签基础样式：升级发光hover效果 */
+        .tag {
+            padding: 6px 18px;
+            color: white;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+        .tag:hover {
+            transform: translateY(-3px) scale(1.05);
+            filter: brightness(1.1);
+        }
+        /* 多巴胺配色升级：每个标签专属渐变，色彩更饱满丰富 */
+        .tag-1 { background: linear-gradient(135deg, #FF9800 0%, #FFEB3B 100%); } /* 亮橙→亮黄 */
+        .tag-2 { background: linear-gradient(135deg, #FF4081 0%, #9C27B0 100%); } /* 亮粉→亮紫 */
+        .tag-3 { background: linear-gradient(135deg, #2196F3 0%, #00BCD4 100%); } /* 亮蓝→亮青 */
+        .tag-4 { background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%); } /* 亮绿→浅绿 */
+        .tag-5 { background: linear-gradient(135deg, #673AB7 0%, #E91E63 100%); } /* 深紫→亮粉 */
+        .tag-6 { background: linear-gradient(135deg, #FF5722 0%, #FF9800 100%); } /* 亮红→亮橙 */
+
+        /* 爱好小卡片容器 */
+        .hobby-wrap {
+            width: 540px;
+            max-width: 100%;
+            margin: 30px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        /* 爱好卡片升级：每个卡片专属马卡龙渐变，色彩完全不重复 */
+        .hobby-card {
+            width: 150px;
+            padding: 15px 10px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        .hobby-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            filter: brightness(1.05);
+        }
+        /* 每个爱好卡片专属渐变配色，和标签呼应，色彩更丰富 */
+        .hobby-card:nth-child(1) { background: linear-gradient(135deg, #FFF0E6 0%, #FFE8CC 100%); } /* 橙黄调 */
+        .hobby-card:nth-child(2) { background: linear-gradient(135deg, #FFE6F2 0%, #F8E6FF 100%); } /* 粉紫调 */
+        .hobby-card:nth-child(3) { background: linear-gradient(135deg, #E6F7FF 0%, #E6F0FF 100%); } /* 蓝紫调 */
+        .hobby-card:nth-child(4) { background: linear-gradient(135deg, #E6FFF0 0%, #F0FFE6 100%); } /* 绿调 */
+        .hobby-card:nth-child(5) { background: linear-gradient(135deg, #F0E6FF 0%, #FFE6F8 100%); } /* 紫粉调 */
+        /* 爱好卡片标题对应配色 */
+        .hobby-card:nth-child(1) h3 { color: #F57C00; }
+        .hobby-card:nth-child(2) h3 { color: #C2185B; }
+        .hobby-card:nth-child(3) h3 { color: #1976D2; }
+        .hobby-card:nth-child(4) h3 { color: #388E3C; }
+        .hobby-card:nth-child(5) h3 { color: #7B1FA2; }
+        .hobby-card p {
+            margin: 0;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* 照片墙样式：升级hover彩色阴影 */
+        .photo-wall {
+            width: 540px;
+            max-width: 100%;
+            margin: 30px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .photo-wall img {
+            width: 100%;
+            height: 120px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+        .photo-wall img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        /* 第二个按钮容器：升级青绿清新渐变 */
+        .abc{
+            width: 250px;
+            max-width: 100%;
+            margin: 50px auto;
+            padding: 20px 10px;
+            background: linear-gradient(135deg, #F0FFF8 0%, #E6FFFA 100%);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(150, 230, 200, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        .abc p {
+            margin-top: 15px;
+            background: linear-gradient(135deg, #00897B, #00796B);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        /* 按钮样式：升级彩虹渐变，hover色彩更丰富 */
+        .btn{
+            padding: 10px 30px;
+            background: linear-gradient(135deg, #FF85B3 0%, #D885FF 50%, #85B3FF 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 15px rgba(255, 133, 179, 0.3);
+            background-size: 200% 100%;
+        }
+        .btn:hover{
+            background-position: 100% 0;
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(133, 179, 255, 0.4);
+        }
+
+        /* 页脚落款 */
+        .footer {
+            margin-top: 30px;
+            background: linear-gradient(135deg, #999, #666);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 主卡片：核心介绍 -->
+    <div class="card">
+        <img src="./test.jpg" class="pho" alt="头像">
+        <h1>爱苗松松<br>么么哒</h1> 
+        <p>苗松松的爱好（享受自由、惬意的小宝宝）：</p> 
+        <p>Eason、拜仁、骑行 、听歌、跑步</p> 
+        <p>不能吃太辣，不吃太甜<br>美式可以喝一大口（最爱这种小男孩了）<br>好的好的（只是简短总结）</p> 
+        <p>这是我的第一个编程项目 ✨</p>
+    </div>
+
+    <!-- 心动语录模块 -->
+    <div class="words-card">
+        <p>“ 愿你永远有奔赴热爱的勇气，有喝一大口美式的爽快，有骑行追风的自由，也有被好好爱着的温柔。”</p>
+        <p class="sign">—— 写给永远惬意的小宝宝</p>
+    </div>
+
+    <!-- 陈奕迅专属音乐播放器 -->
+    <div class="music-box">
+        <p>🎵 循环播放：陈奕迅 - 孤勇者</p>
+        <audio controls src="这里替换成歌曲MP3链接">
+    </div>
+
+    <!-- 表情装饰 -->
+    <div class="emoji">🤓</div>
+
+    <!-- 多巴胺标签模块 -->
+    <div class="tags">
+        <span class="tag tag-1">football</span>
+        <span class="tag tag-2">badminton</span>
+        <span class="tag tag-3">run</span>
+        <span class="tag tag-4">journey</span>
+        <span class="tag tag-5">game</span>
+        <span class="tag tag-6">and so on..</span>
+    </div>
+
+    <!-- 爱好详情小卡片 -->
+    <div class="hobby-wrap">
+        <div class="hobby-card">
+            <h3>⚽ 拜仁慕尼黑</h3>
+            <p>永远为绿茵场上的热血心动</p>
+        </div>
+        <div class="hobby-card">
+            <h3>🎤 Eason陈奕迅</h3>
+            <p>在歌里，藏着所有情绪</p>
+        </div>
+        <div class="hobby-card">
+            <h3>🚲 骑行追风</h3>
+            <p>车轮向前，自由无界</p>
+        </div>
+        <div class="hobby-card">
+            <h3>🏃 跑步放空</h3>
+            <p>用脚步，和世界温柔交手</p>
+        </div>
+        <div class="hobby-card">
+            <h3>🎧 听歌发呆</h3>
+            <p>享受独处的惬意时光</p>
+        </div>
+    </div>
+
+    <!-- 专属照片墙 -->
+    <div class="photo-wall">
+        <img src="这里替换成图片链接" alt="拜仁">
+        <img src="这里替换成图片链接" alt="陈奕迅专辑">
+        <img src="这里替换成图片链接" alt="骑行风景">
+        <img src="这里替换成图片链接" alt="跑步打卡">
+        <img src="这里替换成图片链接" alt="喜欢的风景">
+        <img src="这里替换成图片链接" alt="合照">
+    </div>
+
+    <!-- 按钮互动容器 -->
+    <div class="abc">
+        <button class="btn" id="contactBtn">call me</button>
+        <p>恭喜你</p>
+    </div>
+
+    <!-- 页脚落款 -->
+    <div class="footer">
+        Made with 💗 | 我的第一个编程项目
+    </div>
+
+    <!-- 按钮点击互动彩蛋 -->
+    <script>
+        // 获取按钮元素
+        const btn = document.getElementById('contactBtn');
+        // 点击按钮触发弹窗
+        btn.onclick = function() {
+            alert('💗 恭喜你解锁苗松松的专属心动小站！\n\n美式已备好，骑行路线已规划，永远为热爱奔赴✨');
+        }
+    </script>
+    
+</body>
+</html>
