@@ -389,7 +389,118 @@
             color: #667eea;
             font-size: 18px;
         }
-    
+        /* ✅ 新增：堆叠滑动相册核心样式 */
+        .stack-gallery {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999999;
+            justify-content: center;
+            align-items: center;
+            animation: galleryFadeIn 0.3s ease;
+        }
+        @keyframes galleryFadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        /* 半透明背景，和页面粉紫风格呼应 */
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 133, 179, 0.85), rgba(216, 133, 255, 0.85));
+            backdrop-filter: blur(8px);
+        }
+        /* 相册内容容器 */
+        .gallery-content {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+            padding: 30px 20px;
+            z-index: 10;
+        }
+        /* 关闭按钮 */
+        .gallery-close {
+            position: absolute;
+            top: 0;
+            right: 10px;
+            font-size: 40px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .gallery-close:hover {
+            color: #ffe4e9;
+            transform: rotate(90deg);
+        }
+        /* 相册标题 */
+        .gallery-title {
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        /* 核心：滑动容器 */
+        .stack-slider {
+            width: 100%;
+            height: 450px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        .slider-track {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            touch-action: pan-y; /* 禁止垂直滑动干扰 */
+        }
+        /* 单个图片项，核心堆叠样式 */
+        .slide-item {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80%;
+            max-width: 500px;
+            height: 90%;
+            transform-origin: center;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            cursor: grab;
+        }
+        .slide-item:active {
+            cursor: grabbing;
+        }
+        .slide-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        /* 底部页码 */
+        .gallery-counter {
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            margin-top: 30px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+        }
     </style>
 </head>
 <!-- 足球图片集弹窗 (默认隐藏) -->
@@ -403,6 +514,50 @@
         </div>
     </div>
 </div>
+
+<!-- ✅ 点击run触发的堆叠滑动相册（默认隐藏） -->
+<div id="runGallery" class="stack-gallery">
+    <!-- 半透明背景（点击关闭） -->
+    <div class="gallery-overlay" onclick="closeRunGallery()"></div>
+    <!-- 相册内容区 -->
+    <div class="gallery-content">
+        <!-- 关闭按钮 -->
+        <span class="gallery-close" onclick="closeRunGallery()">×</span>
+        <!-- 相册标题 -->
+        <h3 class="gallery-title">🏃‍♂️ 跑步专属相册</h3>
+        <!-- 核心：堆叠滑动容器 -->
+        <div class="stack-slider" id="stackSlider">
+            <div class="slider-track" id="sliderTrack">
+                <!-- 这里放你的图片，替换成你自己的路径，可无限加 -->
+                <div class="slide-item">
+                    <img src="./running/song-run (1).jpg" alt="跑步照1">
+                </div>
+                <div class="slide-item">
+                    <img src="./running/song-run (2).jpg" alt="跑步照2">
+                </div>
+                <div class="slide-item">
+                    <img src="./running/song-run (3).jpg" alt="跑步照3">
+                </div>
+                <div class="slide-item">
+                    <img src="./running/song-run (4).jpg" alt="跑步照4">
+                </div>
+                <div class="slide-item">
+                    <img src="./running/song-run (5).jpg" alt="跑步照5">
+                </div>
+                <div class="slide-item">
+                    <img src="./running/song-run (6).jpg" alt="跑步照6">
+                </div>
+                <div class="slide-item">
+                    <img src="./running/song-run (7).jpg" alt="跑步照7">
+                </div>
+            </div>
+        </div>
+        <!-- 底部页码指示器 -->
+        <div class="gallery-counter" id="galleryCounter">1 / 7</div>
+    </div>
+</div>
+
+
 <body>
     <!-- 新增：访客计数器 -->
     <p class="counter">你是第 <span id="visitCount">0</span> 位访客 🎉</p>
@@ -481,10 +636,12 @@
     <div class="emoji">🤓</div>
 
     <!-- 多巴胺标签模块 -->
+<!-- 多巴胺标签模块（修改run标签行） -->
     <div class="tags">
-        <span class="tag tag-1" onclick="showFootball()">football</span><!--  点击触发弹窗 -->
+        <span class="tag tag-1" onclick="showFootball()">football</span>
         <span class="tag tag-2">badminton</span>
-        <span class="tag tag-3">run</span>
+        <!-- 新增onclick事件，绑定打开跑步相册的函数 -->
+        <span class="tag tag-3" onclick="openRunGallery()">run</span>
         <span class="tag tag-4">journey</span>
         <span class="tag tag-5">game</span>
         <span class="tag tag-6">and so on..</span>
@@ -535,9 +692,11 @@
         Made with 💗 | 我的第一个编程项目
     </div>
 
-    <!-- 按钮点击 -->
+    
+    <!-- 按钮点击**********************************图片集 -->
     <script>
         // 显示足球图片集
+        
         function showFootball(){
             document.getElementById("footballBox").style.display = "flex";
         }
@@ -546,6 +705,145 @@
             document.getElementById("footballBox").style.display = "none";
         }
     </script>
+
+    <script>
+       // ✅ 堆叠滑动相册核心逻辑
+        const sliderTrack = document.getElementById('sliderTrack');
+        const slideItems = document.querySelectorAll('.slide-item');
+        const galleryCounter = document.getElementById('galleryCounter');
+        const runGallery = document.getElementById('runGallery');
+
+        // 基础配置
+        const totalSlides = slideItems.length;
+        let currentIndex = 0; // 当前显示的图片索引
+        let startX = 0; // 鼠标按下的起始X坐标
+        let currentTranslate = 0; // 当前滑动的偏移量
+        let isDragging = false; // 是否正在拖动
+
+        // 打开相册
+        function openRunGallery() {
+            currentIndex = 0;
+            updateSlidePosition();
+            runGallery.style.display = 'flex';
+            runGallery.style.zIndex = '999999'; // 强制置顶
+        }
+
+        // 关闭跑步相册
+        function closeRunGallery() {
+            runGallery.style.display = 'none';
+        }
+
+        // 按ESC键关闭相册
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && runGallery.style.display === 'flex') {
+                closeRunGallery();
+            }
+        });
+
+        // 核心：更新所有图片的堆叠位置、缩放、透明度
+        function updateSlidePosition() {
+            slideItems.forEach((slide, index) => {
+                // 计算当前图片和目标索引的差值
+                const diff = index - currentIndex;
+                let translateX, scale, opacity, zIndex;
+
+                // 核心堆叠逻辑
+                if (diff === 0) {
+                    // 当前选中的图片：居中、最上层、最大尺寸
+                    translateX = '-50%';
+                    scale = 1;
+                    opacity = 1;
+                    zIndex = 10;
+                } else if (diff > 0) {
+                    // 右侧的图片：叠在后方，向右偏移，缩小，半透明
+                    translateX = `calc(-50% + ${diff * 60}px)`;
+                    scale = 1 - diff * 0.08;
+                    opacity = 1 - diff * 0.2;
+                    zIndex = 10 - diff;
+                } else {
+                    // 左侧的图片：叠在后方，向左偏移，缩小，半透明
+                    translateX = `calc(-50% + ${diff * 60}px)`;
+                    scale = 1 - Math.abs(diff) * 0.08;
+                    opacity = 1 - Math.abs(diff) * 0.2;
+                    zIndex = 10 - Math.abs(diff);
+                }
+
+                // 超出2张的图片直接隐藏，避免性能问题
+                if (Math.abs(diff) > 2) {
+                    opacity = 0;
+                    zIndex = 0;
+                }
+
+                // 应用样式
+                slide.style.transform = `translate(${translateX}, -50%) scale(${scale})`;
+                slide.style.opacity = opacity;
+                slide.style.zIndex = zIndex;
+            });
+
+            // 更新底部页码
+            galleryCounter.textContent = `${currentIndex + 1} / ${totalSlides}`;
+        }
+
+        // 鼠标/触摸按下事件
+        function handleStart(e) {
+            isDragging = true;
+            // 获取鼠标/触摸的起始X坐标
+            startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+        }
+
+        // 鼠标/触摸移动事件
+        function handleMove(e) {
+            if (!isDragging) return;
+            e.preventDefault(); // 防止页面滚动干扰
+
+            // 获取当前X坐标，计算偏移量
+            const currentX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            const diffX = currentX - startX;
+            currentTranslate = diffX;
+        }
+
+        // 鼠标/触摸松开事件
+        function handleEnd() {
+            if (!isDragging) return;
+            isDragging = false;
+
+            // 滑动超过1/4宽度，切换图片
+            const swipeThreshold = sliderTrack.offsetWidth / 4;
+            if (Math.abs(currentTranslate) > swipeThreshold) {
+                // 向左滑 → 下一张
+                if (currentTranslate < 0) {
+                    if (currentIndex < totalSlides - 1) {
+                        currentIndex++;
+                    }
+                }
+                // 向右滑 → 上一张
+                else {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                    }
+                }
+            }
+
+            // 重置偏移量，更新堆叠位置
+            currentTranslate = 0;
+            updateSlidePosition();
+        }
+
+        // 绑定鼠标事件
+        sliderTrack.addEventListener('mousedown', handleStart);
+        sliderTrack.addEventListener('mousemove', handleMove);
+        sliderTrack.addEventListener('mouseup', handleEnd);
+        sliderTrack.addEventListener('mouseleave', handleEnd);
+
+        // 绑定手机触摸事件
+        sliderTrack.addEventListener('touchstart', handleStart);
+        sliderTrack.addEventListener('touchmove', handleMove);
+        sliderTrack.addEventListener('touchend', handleEnd);
+
+        // 页面加载时初始化一次
+        window.addEventListener('load', updateSlidePosition);
+    </script>
+
 
     <!-- 按钮点击互动彩蛋 -->
     <script>

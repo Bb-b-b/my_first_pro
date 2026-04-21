@@ -19,7 +19,7 @@
             box-sizing: border-box;
             font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
         }
-        /* 整个页面的背景设置：升级为四色柔雾渐变，色彩更丰富不刺眼 */
+        /* 整个页面的背景设置：四色柔雾流动渐变，色彩丰富不刺眼 */
         body {
             background: linear-gradient(120deg, #FFF5F8, #F8F0FF, #F0F7FF, #FFF8F0);
             background-size: 400% 400%;
@@ -34,7 +34,7 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        /* 中间主卡片的样式：升级粉白柔雾渐变 */
+        /* 中间主卡片的样式：粉白柔雾渐变 */
         .card {
             width: 500px;
             max-width: 100%;
@@ -45,7 +45,7 @@
             box-shadow: 0 5px 20px rgba(255, 182, 193, 0.2);
             border: 2px solid rgba(255, 255, 255, 0.5);
         }
-        /* 头像样式：升级渐变发光边框 */
+        /* 头像样式：粉紫渐变发光边框 */
         .pho{
             width: 100px;
             height: 100px;
@@ -75,7 +75,7 @@
             font-size: 16px;
         }
 
-        /* 心动语录卡片样式：升级紫蓝柔雾渐变 */
+        /* 心动语录卡片样式：紫蓝柔雾渐变 */
         .words-card {
             width: 500px;
             max-width: 100%;
@@ -102,7 +102,7 @@
             font-weight: 500;
         }
 
-        /* 音乐播放器样式：升级橙黄元气渐变 */
+        /* 音乐播放器样式：橙黄元气渐变，适配《我们万岁》 */
         .music-box {
             width: 500px;
             max-width: 100%;
@@ -132,6 +132,49 @@
             border-radius: 20px;
         }
 
+        /* 新增：《我们万岁》专属歌词卡片样式 */
+        .lyric-card {
+            width: 500px;
+            max-width: 100%;
+            margin: 30px auto;
+            padding: 25px;
+            background: linear-gradient(135deg, #FFE6F2 0%, #F8E6FF 100%);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(255, 182, 193, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        .lyric-card h3 {
+            background: linear-gradient(135deg, #D87093, #9C27B0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        .lyric-card .lyric-content {
+            line-height: 2;
+            color: #666;
+            font-size: 14px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        /* 歌词滚动条美化 */
+        .lyric-content::-webkit-scrollbar {
+            width: 4px;
+        }
+        .lyric-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #FF85B3, #D885FF);
+            border-radius: 4px;
+        }
+        .lyric-content .highlight {
+            background: linear-gradient(135deg, #D87093, #9C27B0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+
         /* 表情样式 */
         .emoji {
             font-size: 40px;
@@ -151,7 +194,7 @@
             justify-content: center;
             gap: 10px;
         }
-        /* 单个标签基础样式：升级发光hover效果 */
+        /* 单个标签基础样式：发光hover效果 */
         .tag {
             padding: 6px 18px;
             color: white;
@@ -160,12 +203,13 @@
             font-weight: 500;
             box-shadow: 0 3px 10px rgba(0,0,0,0.15);
             transition: all 0.3s ease;
+            cursor: pointer; /* 新增：给标签加鼠标指针，提示可点击 */
         }
         .tag:hover {
             transform: translateY(-3px) scale(1.05);
             filter: brightness(1.1);
         }
-        /* 多巴胺配色升级：每个标签专属渐变，色彩更饱满丰富 */
+        /* 多巴胺配色：每个标签专属渐变，色彩更饱满丰富 */
         .tag-1 { background: linear-gradient(135deg, #FF9800 0%, #FFEB3B 100%); } /* 亮橙→亮黄 */
         .tag-2 { background: linear-gradient(135deg, #FF4081 0%, #9C27B0 100%); } /* 亮粉→亮紫 */
         .tag-3 { background: linear-gradient(135deg, #2196F3 0%, #00BCD4 100%); } /* 亮蓝→亮青 */
@@ -183,7 +227,7 @@
             justify-content: center;
             gap: 15px;
         }
-        /* 爱好卡片升级：每个卡片专属马卡龙渐变，色彩完全不重复 */
+        /* 爱好卡片：每个卡片专属马卡龙渐变，色彩完全不重复 */
         .hobby-card {
             width: 150px;
             padding: 15px 10px;
@@ -196,7 +240,7 @@
             transform: translateY(-5px) scale(1.03);
             filter: brightness(1.05);
         }
-        /* 每个爱好卡片专属渐变配色，和标签呼应，色彩更丰富 */
+        /* 每个爱好卡片专属渐变配色，和标签呼应 */
         .hobby-card:nth-child(1) { background: linear-gradient(135deg, #FFF0E6 0%, #FFE8CC 100%); } /* 橙黄调 */
         .hobby-card:nth-child(2) { background: linear-gradient(135deg, #FFE6F2 0%, #F8E6FF 100%); } /* 粉紫调 */
         .hobby-card:nth-child(3) { background: linear-gradient(135deg, #E6F7FF 0%, #E6F0FF 100%); } /* 蓝紫调 */
@@ -215,7 +259,7 @@
             line-height: 1.5;
         }
 
-        /* 照片墙样式：升级hover彩色阴影 */
+        /* 照片墙样式：hover彩色阴影 */
         .photo-wall {
             width: 540px;
             max-width: 100%;
@@ -238,7 +282,7 @@
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
         }
 
-        /* 第二个按钮容器：升级青绿清新渐变 */
+        /* 第二个按钮容器：青绿清新渐变 */
         .abc{
             width: 250px;
             max-width: 100%;
@@ -259,7 +303,7 @@
             font-size: 16px;
         }
 
-        /* 按钮样式：升级彩虹渐变，hover色彩更丰富 */
+        /* 按钮样式：彩虹渐变，hover色彩流动效果 */
         .btn{
             padding: 10px 30px;
             background: linear-gradient(135deg, #FF85B3 0%, #D885FF 50%, #85B3FF 100%);
@@ -288,12 +332,194 @@
             color: transparent;
             font-size: 14px;
         }
+
+        /* 足球图片弹窗样式 */
+        .img-popup{
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content{
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+        .close-btn{
+            font-size: 30px;
+            float: right;
+            cursor: pointer;
+            color: #ff5722;
+        }
+        .img-grid{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .img-grid img{
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .popup-content h3{
+            color: #ff5722;
+            margin: 0 0 10px 0;
+        }
+        .contact-btn:hover {
+            /* ... 保持不变 ... */
+        }
+        /* 新增计数器样式 */
+        .counter {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        .counter span {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 18px;
+        }
+        /* ✅ 新增：可左右堆叠查看的大图灯箱样式 */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 999999;
+            justify-content: center;
+            align-items: center;
+            animation: lightboxFadeIn 0.3s ease;
+        }
+        @keyframes lightboxFadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000000;
+        }
+        .lightbox-close:hover {
+            color: #FF85B3;
+            transform: rotate(90deg);
+        }
+        .lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            transition: all 0.3s ease;
+            user-select: none;
+            z-index: 1000000;
+        }
+        .lightbox-arrow:hover {
+            color: #FF85B3;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .lightbox-prev {
+            left: 20px;
+        }
+        .lightbox-next {
+            right: 20px;
+        }
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(255, 133, 179, 0.3);
+            animation: lightboxImgPop 0.3s ease;
+        }
+        @keyframes lightboxImgPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 18px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+        /* ✅ 新增：隐藏默认的图片网格（只保留点击run触发） */
+        .modal-gallery {
+            display: none;
+        }
     </style>
 </head>
+<!-- 足球图片集弹窗 (默认隐藏) -->
+<div id="footballBox" class="img-popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closeFootball()">×</span>
+        <h3>        ⚽ OKOK 足球宝贝</h3><!--  4.20新增-->
+        <div class="img-grid">
+            <img src="./s1-ball.jpg" alt="松踢球照1">
+            <img src="./s2-ball.jpg" alt="松踢球照2">
+        </div>
+    </div>
+</div>
+
+<!-- ✅ 隐藏的图片网格（仅保留逻辑，不显示） -->
+<div class="modal-gallery">
+    <img src="./running/song-run (1).jpg" alt="拜仁1" onclick="openLightbox(0)">
+    <img src="./running/song-run (2).jpg" alt="拜仁2" onclick="openLightbox(1)">
+    <img src="./running/song-run (3).jpg" alt="拜仁3" onclick="openLightbox(2)">
+    <img src="./running/song-run (4).jpg" alt="拜仁4" onclick="openLightbox(3)">
+    <img src="./running/song-run (5).jpg" alt="拜仁5" onclick="openLightbox(4)">
+    <img src="./running/song-run (6).jpg" alt="拜仁6" onclick="openLightbox(5)">
+    <img src="./running/song-run (7).jpg" alt="拜仁6" onclick="openLightbox(6)"> <!-- 修正索引错误：原代码是5，改为6 -->
+</div>
+
+<!-- ✅ 新增：可左右堆叠查看的大图灯箱（默认隐藏） -->
+<div id="lightbox" class="lightbox">
+    <!-- 关闭按钮 -->
+    <span class="lightbox-close" onclick="closeLightbox()">×</span>
+    <!-- 左箭头 -->
+    <span class="lightbox-arrow lightbox-prev" onclick="changeLightbox(-1)">❮</span>
+    <!-- 大图展示区 -->
+    <img id="lightbox-img" class="lightbox-img" src="" alt="">
+    <!-- 右箭头 -->
+    <span class="lightbox-arrow lightbox-next" onclick="changeLightbox(1)">❯</span>
+    <!-- 图片计数器 -->
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
 <body>
+    <!-- 新增：访客计数器 -->
+    <p class="counter">你是第 <span id="visitCount">0</span> 位访客 🎉</p>
+
+
     <!-- 主卡片：核心介绍 -->
     <div class="card">
-        <img src="./test.jpg" class="pho" alt="头像">
+        <img src="./headpro.jpg" class="pho" alt="头像">
         <h1>爱苗松松<br>么么哒</h1> 
         <p>苗松松的爱好（享受自由、惬意的小宝宝）：</p> 
         <p>Eason、拜仁、骑行 、听歌、跑步</p> 
@@ -307,10 +533,57 @@
         <p class="sign">—— 写给永远惬意的小宝宝</p>
     </div>
 
-    <!-- 陈奕迅专属音乐播放器 -->
+    <!-- ✅ 已修复：音频路径改为 GitHub 相对路径，补全闭合标签 -->
     <div class="music-box">
-        <p>🎵 循环播放：陈奕迅 - 孤勇者</p>
-        <audio controls src="这里替换成歌曲MP3链接">
+        <p>🎵 循环播放：陈奕迅 - 我们万岁</p>
+        <audio controls src="./eason-our-forever.mp4"></audio> <!-- 补全闭合标签 -->
+    </div>
+
+    <!-- 新增：《我们万岁》完整歌词卡片 -->
+    <div class="lyric-card">
+        <h3>  💌《我们万岁》歌词</h3>
+        <div class="lyric-content">
+            <p>渐渐头上染了白 你一样很美</p>
+            <p>纯粹发自我真心 别皱眉</p>
+            <p>月亮是否仍然认得当天的你</p>
+            <p>约会每一刻亦带着孩子气</p>
+            <p>常为碎事而庆祝</p>
+            <p>怀念幼稚时犯的错</p>
+            <p>真想与你重游那快乐故地</p>
+            <br>
+            <p class="highlight">情人游天地 日月换行李</p>
+            <p class="highlight">如果失忆 我渴望再多一次 认识你</p>
+            <p class="highlight">与你说些无聊事 挽手几千里</p>
+            <p class="highlight">证明可不舍不弃 吻停不知几多岁的你</p>
+            <br>
+            <p>特别鸣谢你制造 更欢乐的我</p>
+            <p>除了每月有几天 受折磨</p>
+            <p>段段日子回头望清怎么走过</p>
+            <p>确定这碉堡没有事能攻破</p>
+            <p>曾为愤怒而痛哭</p>
+            <p>回望厌闷时越的界</p>
+            <p>珍惜有你仍然会对着我坐</p>
+            <br>
+            <p class="highlight">情人游天地 日月换行李</p>
+            <p class="highlight">如果失忆 我渴望再多一次 认识你</p>
+            <p class="highlight">与你说些无聊事 挽手几千里</p>
+            <p class="highlight">证明可不舍不弃 吻停你到下世纪</p>
+            <br>
+            <p>变幻 继续 变幻 拆不开</p>
+            <p>我们 已成 我们 还好有爱在 怀中感慨</p>
+            <p>笑着 喊着 抱着 如万世不朽只有爱</p>
+            <p>多好 能拥抱未来</p>
+            <br>
+            <p class="highlight">情人游天地 日月换行李</p>
+            <p class="highlight">从今开始 懒理会世间一切 是与非</p>
+            <p class="highlight">与你说些无聊事 再走几千里</p>
+            <p class="highlight">永恒的不舍不弃 降临你我合葬的墓碑</p>
+            <br>
+            <p>（能重头偷望你 能重头追逐你 能重头亲近你）</p>
+            <p>而我要好好珍惜你</p>
+            <p>（能重头呵护你 能重头感动你）</p>
+            <p>能重头享受爱你</p>
+        </div>
     </div>
 
     <!-- 表情装饰 -->
@@ -318,9 +591,10 @@
 
     <!-- 多巴胺标签模块 -->
     <div class="tags">
-        <span class="tag tag-1">football</span>
+        <span class="tag tag-1" onclick="showFootball()">football</span><!--  点击触发弹窗 -->
         <span class="tag tag-2">badminton</span>
-        <span class="tag tag-3">run</span>
+        <!-- ✅ 核心修改：给run标签添加点击事件，打开灯箱（从第一张图开始） -->
+        <span class="tag tag-3" onclick="openLightbox(0)">run</span>
         <span class="tag tag-4">journey</span>
         <span class="tag tag-5">game</span>
         <span class="tag tag-6">and so on..</span>
@@ -350,26 +624,110 @@
         </div>
     </div>
 
-    <!-- 专属照片墙 -->
+    <!-- 专属照片墙（记得把图片上传到 images 文件夹，替换下面的链接） -->
     <div class="photo-wall">
-        <img src="这里替换成图片链接" alt="拜仁">
-        <img src="这里替换成图片链接" alt="陈奕迅专辑">
-        <img src="这里替换成图片链接" alt="骑行风景">
-        <img src="这里替换成图片链接" alt="跑步打卡">
-        <img src="这里替换成图片链接" alt="喜欢的风景">
-        <img src="这里替换成图片链接" alt="合照">
+        <img src="./images/bayern.jpg" alt="拜仁">
+        <img src="./images/eason.jpg" alt="陈奕迅专辑">
+        <img src="./images/riding.jpg" alt="骑行风景">
+        <img src="./images/running.jpg" alt="跑步打卡">
+        <img src="./images/scenery.jpg" alt="喜欢的风景">
+        <img src="./images/photo.jpg" alt="合照">
     </div>
 
     <!-- 按钮互动容器 -->
     <div class="abc">
-        <button class="btn" id="contactBtn">call me</button>
-        <p>恭喜你</p>
+        <button class="btn" id="contactBtn">kiss 👄</button>
+        <p>喜欢你</p>
     </div>
 
     <!-- 页脚落款 -->
     <div class="footer">
         Made with 💗 | 我的第一个编程项目
     </div>
+
+    
+    <!-- 按钮点击**********************************图片集 -->
+    <script>
+        // 显示足球图片集
+        function showFootball(){
+            document.getElementById("footballBox").style.display = "flex";
+        }
+        // 关闭足球图片集
+        function closeFootball(){
+            document.getElementById("footballBox").style.display = "none";
+        }
+    </script>
+
+    <script>
+        // ✅ 新增：可左右堆叠查看的大图灯箱功能
+        // 把你的图片链接放在这个数组里，替换成你自己的
+        const lightboxImages = [
+            "./running/song-run (1).jpg",
+            "./running/song-run (2).jpg" ,
+            "./running/song-run (3).jpg" ,
+            "./running/song-run (4).jpg" ,
+            "./running/song-run (5).jpg" ,
+            "./running/song-run (6).jpg" ,
+            "./running/song-run (7).jpg"
+        ];
+        let currentLightboxIndex = 0;
+
+        // 打开灯箱
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImg = document.getElementById("lightbox-img");
+            const lightboxCounter = document.getElementById("lightbox-counter");
+            
+            lightbox.style.display = "flex";
+            lightboxImg.src = lightboxImages[index];
+            lightboxCounter.textContent = `${index + 1} / ${lightboxImages.length}`;
+        }
+
+        // 关闭灯箱
+        function closeLightbox() {
+            document.getElementById("lightbox").style.display = "none";
+        }
+
+        // 左右切换图片
+        function changeLightbox(direction) {
+            currentLightboxIndex += direction;
+            
+            // 循环切换：到最后一张时回到第一张，到第一张时回到最后一张
+            if (currentLightboxIndex >= lightboxImages.length) {
+                currentLightboxIndex = 0;
+            } else if (currentLightboxIndex < 0) {
+                currentLightboxIndex = lightboxImages.length - 1;
+            }
+            
+            const lightboxImg = document.getElementById("lightbox-img");
+            const lightboxCounter = document.getElementById("lightbox-counter");
+            
+            // 添加切换动画
+            lightboxImg.style.animation = "none";
+            setTimeout(() => {
+                lightboxImg.style.animation = "lightboxImgPop 0.3s ease";
+            }, 10);
+            
+            lightboxImg.src = lightboxImages[currentLightboxIndex];
+            lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${lightboxImages.length}`;
+        }
+
+        // 按键盘左右键也能切换图片，按ESC键关闭灯箱
+        document.addEventListener("keydown", function(e) {
+            const lightbox = document.getElementById("lightbox");
+            if (lightbox.style.display === "flex") {
+                if (e.key === "ArrowLeft") {
+                    changeLightbox(-1);
+                } else if (e.key === "ArrowRight") {
+                    changeLightbox(1);
+                } else if (e.key === "Escape") {
+                    closeLightbox();
+                }
+            }
+        });
+    </script>
+
 
     <!-- 按钮点击互动彩蛋 -->
     <script>
@@ -379,6 +737,23 @@
         btn.onclick = function() {
             alert('💗 恭喜你解锁苗松松的专属心动小站！\n\n美式已备好，骑行路线已规划，永远为热爱奔赴✨');
         }
+    </script>
+
+    <script>
+        // --- 访客计数器逻辑 ---
+        // 1. 先从浏览器的本地存储里读取之前的次数
+        let count = localStorage.getItem('visitCount');
+        // 2. 如果之前没有记录，就从 1 开始
+        if (!count) {
+            count = 1;
+        } else {
+            // 如果有记录，就加 1
+            count = parseInt(count) + 1;
+        }
+        // 3. 把新的次数存回本地存储
+        localStorage.setItem('visitCount', count);
+        // 4. 把次数显示到页面上
+        document.getElementById('visitCount').textContent = count;
     </script>
     
 </body>
