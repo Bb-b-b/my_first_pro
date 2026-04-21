@@ -513,8 +513,8 @@
 </div>
 
 <body>
-    <!-- 新增：访客计数器 -->
-    <p class="counter">你是第 <span id="visitCount">0</span> 位访客 🎉</p>
+    <!-- 全局访客计数器：不蒜子，所有用户访问都叠加 -->
+    <p class="counter">你是第 <span id="busuanzi_value_site_pv"></span> 位访客 🎉</p>
 
 
     <!-- 主卡片：核心介绍 -->
@@ -541,7 +541,7 @@
 
     <!-- 新增：《我们万岁》完整歌词卡片 -->
     <div class="lyric-card">
-        <h3>  💌《我们万岁》歌词</h3>
+        <h3>  💜《我们万岁》歌词</h3>
         <div class="lyric-content">
             <p>渐渐头上染了白 你一样很美</p>
             <p>纯粹发自我真心 别皱眉</p>
@@ -626,12 +626,12 @@
 
     <!-- 专属照片墙（记得把图片上传到 images 文件夹，替换下面的链接） -->
     <div class="photo-wall">
-        <img src="./images/bayern.jpg" alt="拜仁">
-        <img src="./images/eason.jpg" alt="陈奕迅专辑">
-        <img src="./images/riding.jpg" alt="骑行风景">
-        <img src="./images/running.jpg" alt="跑步打卡">
-        <img src="./images/scenery.jpg" alt="喜欢的风景">
-        <img src="./images/photo.jpg" alt="合照">
+        <img src="./images/bayern.jpg" >
+        <img src="./images/eason.jpg" >
+        <img src="./images/riding.jpg" >
+        <img src="./images/running.jpg">
+        <img src="./images/scenery.jpg">
+        <img src="./images/photo.jpg">
     </div>
 
     <!-- 按钮互动容器 -->
@@ -739,22 +739,8 @@
         }
     </script>
 
-    <script>
-        // --- 访客计数器逻辑 ---
-        // 1. 先从浏览器的本地存储里读取之前的次数
-        let count = localStorage.getItem('visitCount');
-        // 2. 如果之前没有记录，就从 1 开始
-        if (!count) {
-            count = 1;
-        } else {
-            // 如果有记录，就加 1
-            count = parseInt(count) + 1;
-        }
-        // 3. 把新的次数存回本地存储
-        localStorage.setItem('visitCount', count);
-        // 4. 把次数显示到页面上
-        document.getElementById('visitCount').textContent = count;
-    </script>
-    
+    <!-- 不蒜子全局计数器脚本 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 </body>
 </html>
