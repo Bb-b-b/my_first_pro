@@ -258,27 +258,43 @@
             line-height: 1.5;
         }
 
-        /* 照片墙样式：hover彩色阴影 */
+        /* 照片墙核心容器：固定2行3列，自适应不跑偏 */
         .photo-wall {
             width: 540px;
             max-width: 100%;
             margin: 30px auto;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(3, 1fr); /* 强制3列布局 */
+            gap: 10px; /* 格子之间的间距 */
         }
-        .photo-wall img {
+        /* 每个格子的统一容器：强制固定尺寸，不管是图片还是视频都不会撑开 */
+        .wall-item {
             width: 100%;
-            height: 120px;
+            height: 120px; /* 和你原来的图片高度完全一致 */
             border-radius: 8px;
-            object-fit: cover;
+            overflow: hidden;
             box-shadow: 0 0 8px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
             border: 2px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
         }
-        .photo-wall img:hover {
+        /* 格子hover放大效果，统一 */
+        .wall-item:hover {
             transform: scale(1.05);
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+        /* 图片样式：填满格子，不变形 */
+        .wall-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        /* 视频样式：和图片完全一致，填满格子，不变形 */
+        .wall-item .wall-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 竖屏视频会自动裁剪适配，不会变形撑开 */
+            display: block;
         }
 
         /* 第二个按钮容器：青绿清新渐变 */
@@ -661,19 +677,33 @@
         </div>
     </div>
 
-    <!-- 专属照片墙（记得把图片上传到 images 文件夹，替换下面的链接） -->
+   <!-- 专属照片墙 修复版：图片+视频统一布局 -->
     <div class="photo-wall">
-        <img src="./images/bayern.jpg" alt="拜仁">
-        <img src="./images/eason.jpg" alt="陈奕迅专辑">
-        <img src="./images/riding.jpg" alt="骑行风景">
-        <img src="./images/running.jpg" alt="跑步打卡">
-        <img src="./images/scenery.jpg" alt="喜欢的风景">
-        <img src="./images/photo.jpg" alt="合照">
+        <!-- 每个格子都用统一的wall-item容器包裹，保证布局不乱 -->
+        <div class="wall-item">
+            <img src="./by.jpg" alt="拜仁合照">
+        </div>
+        <div class="wall-item">
+            <img src="./Eason.jpg" alt="陈奕迅">
+        </div>
+        <div class="wall-item">
+            <img src="./wuxd.jpg" alt="吴向东">
+        </div>
+        <div class="wall-item">
+            <img src="./右.jpg" alt="右图">
+        </div>
+        <div class="wall-item">
+            <!-- 自动播放的视频，和图片完全同尺寸 -->
+            <video class="wall-video" src="./hand.mp4" autoplay muted loop playsinline></video>
+        </div>
+        <div class="wall-item">
+            <img src="./左.jpg" alt="左图">
+        </div>
     </div>
 
     <!-- 按钮互动容器 -->
     <div class="abc">
-        <button class="btn" id="contactBtn">kiss 👄</button>
+        <button class="btn" id="contactBtn">么么哒</button>
         <p>喜欢你</p>
     </div>
 
@@ -841,7 +871,7 @@
         const btn = document.getElementById('contactBtn');
         // 点击按钮触发弹窗
         btn.onclick = function() {
-            alert('💗 恭喜你解锁苗松松的专属心动小站！\n\n美式已备好，骑行路线已规划，永远为热爱奔赴✨');
+            alert('                        ✨ \n\n💗 恭喜你解锁苗松松的专属心动小站！');
         }
     </script>
 
