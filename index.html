@@ -389,72 +389,70 @@
             color: #667eea;
             font-size: 18px;
         }
-        /* ✅ 新增：堆叠滑动相册核心样式 */
-        .stack-gallery {
+        /* ✅ 跑步相册通用样式（复用football弹窗的基础样式） */
+        /* 弹窗外层容器，和football完全一致 */
+        .img-popup {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 999999;
+            z-index: 9999;
             justify-content: center;
             align-items: center;
-            animation: galleryFadeIn 0.3s ease;
         }
-        @keyframes galleryFadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        /* 半透明背景，和页面粉紫风格呼应 */
-        .gallery-overlay {
+        /* 半透明背景（和football弹窗一致的纯黑半透明，无粉色） */
+        .popup-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(255, 133, 179, 0.85), rgba(216, 133, 255, 0.85));
-            backdrop-filter: blur(8px);
+            background: rgba(0,0,0,0.7);
         }
-        /* 相册内容容器 */
-        .gallery-content {
+        /* 白色卡片容器（和football的popup-content完全一致） */
+        .popup-content {
             position: relative;
-            width: 90%;
-            max-width: 700px;
-            padding: 30px 20px;
-            z-index: 10;
-        }
-        /* 关闭按钮 */
-        .gallery-close {
-            position: absolute;
-            top: 0;
-            right: 10px;
-            font-size: 40px;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 100;
-        }
-        .gallery-close:hover {
-            color: #ffe4e9;
-            transform: rotate(90deg);
-        }
-        /* 相册标题 */
-        .gallery-title {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
             text-align: center;
-            color: white;
-            font-size: 24px;
-            margin-bottom: 40px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 800px; /* 比football的弹窗宽一点，适配图片展示 */
+            z-index: 10;
+            animation: modalPop 0.3s ease;
         }
-        /* 核心：滑动容器 */
+        /* 弹出动画，和页面风格统一 */
+        @keyframes modalPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        /* 关闭按钮（和football同样式，颜色适配run标签的蓝色） */
+        .close-btn {
+            font-size: 30px;
+            float: right;
+            cursor: pointer;
+            color: #2196F3; /* run标签的蓝色，和football的橙色区分开，也可以改成#ff5722和football一致 */
+            position: absolute;
+            top: 20px;
+            right: 25px;
+        }
+        /* 标题样式（和football同层级，颜色适配run标签） */
+        .popup-content h3 {
+            color: #2196F3; /* run标签的蓝色，和football的橙色区分开 */
+            margin: 0 0 25px 0;
+            font-size: 24px;
+        }
+
+        /* ✅ 核心：堆叠滑动容器样式（固定在白色卡片内，有明确范围） */
         .stack-slider {
             width: 100%;
-            height: 450px;
+            height: 400px; /* 图片区域的固定高度，可自行调整 */
             position: relative;
             overflow: hidden;
-            border-radius: 20px;
+            border-radius: 12px;
+            margin: 0 auto;
         }
         .slider-track {
             width: 100%;
@@ -467,14 +465,14 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 80%;
-            max-width: 500px;
+            width: 75%;
+            max-width: 550px;
             height: 90%;
             transform-origin: center;
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border-radius: 15px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
             cursor: grab;
         }
         .slide-item:active {
@@ -484,22 +482,14 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 15px;
+            border-radius: 10px;
         }
         /* 底部页码 */
         .gallery-counter {
             text-align: center;
-            color: white;
-            font-size: 16px;
-            margin-top: 30px;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 20px;
-            border-radius: 20px;
-            display: inline-block;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 0;
+            color: #666;
+            font-size: 14px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -515,20 +505,20 @@
     </div>
 </div>
 
-<!-- ✅ 点击run触发的堆叠滑动相册（默认隐藏） -->
-<div id="runGallery" class="stack-gallery">
-    <!-- 半透明背景（点击关闭） -->
-    <div class="gallery-overlay" onclick="closeRunGallery()"></div>
-    <!-- 相册内容区 -->
-    <div class="gallery-content">
-        <!-- 关闭按钮 -->
-        <span class="gallery-close" onclick="closeRunGallery()">×</span>
-        <!-- 相册标题 -->
-        <h3 class="gallery-title">🏃‍♂️ 跑步专属相册</h3>
-        <!-- 核心：堆叠滑动容器 -->
+<!-- ✅ 点击run触发的堆叠滑动相册（和football弹窗同样式） -->
+<div id="runGallery" class="img-popup">
+    <!-- 半透明背景（点击关闭，和football弹窗一致） -->
+    <div class="popup-overlay" onclick="closeRunGallery()"></div>
+    <!-- 白色卡片容器（和football的popup-content完全一致） -->
+    <div class="popup-content run-popup-content">
+        <!-- 关闭按钮（和football同位置同样式） -->
+        <span class="close-btn" onclick="closeRunGallery()">×</span>
+        <!-- 相册标题（和football标题同层级） -->
+        <h3>🏃‍♂️ 跑步专属相册</h3>
+        <!-- 核心：堆叠滑动容器（放在白色卡片内，有固定范围） -->
         <div class="stack-slider" id="stackSlider">
             <div class="slider-track" id="sliderTrack">
-                <!-- 这里放你的图片，替换成你自己的路径，可无限加 -->
+                <!-- 你的图片，替换成自己的路径即可 -->
                 <div class="slide-item">
                     <img src="./running/song-run (1).jpg" alt="跑步照1">
                 </div>
